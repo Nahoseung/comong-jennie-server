@@ -1,2 +1,2 @@
 # comong-jennie-server
-박정하,나호승
+백엔드 멤버 : 박정하,나호승
