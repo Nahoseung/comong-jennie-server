@@ -6,12 +6,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('User', '0001_initial'),
+        ('Community', '0001_model_post_created'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
+            model_name='post',
             name='id',
             field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
         ),
