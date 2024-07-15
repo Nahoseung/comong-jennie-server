@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import Post
 
-class PostSerializer(serializers.Serializer):
+class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields=['id','title','content','Date_Created','Date_Modified',] #'author','Tag']
+        fields = '__all__'
+        # ['id','title','content','Created','Modified',] #'author','Tag']
         # read_only_fields=['id','title','content','Date_Created','Date_Modified']
         
