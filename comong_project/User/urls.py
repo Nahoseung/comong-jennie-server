@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path("",views.index,name="index"),
+    path("users/<int:user_id>/",views.ProfileView.as_view(),name="profile"),
 ]
