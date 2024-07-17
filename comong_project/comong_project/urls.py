@@ -16,13 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.views.generic import TemplateView
-from rest_framework.routers import DefaultRouter
-from User.views import CustomPasswordChangeView, UserViewSet
-
-# DRF 라우터 설정
-# 뷰셋 등록, RESTful API 엔드포인트 자동 생성
-router = DefaultRouter()
-router.register(r'users', UserViewSet)
+from User.views import CustomPasswordChangeView
 
 urlpatterns = [
     # admin
@@ -39,6 +33,4 @@ urlpatterns = [
     ),
     path('password/change/',CustomPasswordChangeView.as_view(),name="account_password_change"),
     path("", include("allauth.urls")),
-    # DRF 라우터 URL
-    path('api/', include(router.urls)),
 ]
