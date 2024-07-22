@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware',
+    'User.middleware.ProfileSetupMiddleware',
 ]
 
 ROOT_URLCONF = 'comong_project.urls'
@@ -139,13 +139,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_SIGNUP_REDIRECT_URL = "index"
+ACCOUNT_SIGNUP_REDIRECT_URL = "profile-set"
 LOGIN_REDIRECT_URL = "index"
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_AUTHENTICATED_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_FORM_CLASS = "User.forms.SignupForm"
+# ACCOUNT_SIGNUP_FORM_CLASS = "User.forms.SignupForm"
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_PASSWORD_IUPUT_RENDER_VALUE = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True

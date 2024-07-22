@@ -11,6 +11,11 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path("",views.index,name="index"),
     path("users/<int:user_id>/",views.ProfileView.as_view(),name="profile"),
+
+    # 프로필 설정
+    path("set-profile/",views.ProfileSetView.as_view(),name="profile-set"),
+    # 프로필 수정
+    path("edit-profile/",views.ProfileUpdateView.as_view(),name="profile-update"),
     
     # DRF 라우터 URL
     path('api/', include(router.urls)),
