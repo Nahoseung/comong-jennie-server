@@ -1,30 +1,3 @@
-'''
-from django.shortcuts import render
-from django.urls import reverse
-from django.views.generic import DetailView
-from allauth.account.views import PasswordChangeView
-from User.models import User
-
-# Create your views here.
-def index(request):
-    return render(request,"User/index.html")
-
-class ProfileView(DetailView):
-    model = User
-    template_name = "User/profile.html"
-    pk_url_kwarg = "user_id"
-    context_object_name = "profile_user"
-
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        user_id = self.kwargs.get("user_id")
-        context["user_reviews"] = Review.objects.filter(author__id).order_by("-dt_created")[:4]
-        return context
-
-class CustomPasswordChangeView(PasswordChangeView):
-    def get_success_url(self):
-        return reverse("index")
-'''
 from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
@@ -54,6 +27,11 @@ class ProfileView(DetailView):
     pk_url_kwarg = "user_id"
     context_object_name = "profile_user"
 
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["user_tier"] = self.get_object().tier  # 티어 정보를 컨텍스트에 추가
+        return context
+
 # 프로필 설정 -> UpdateView 상속
 class ProfileSetView(LoginRequiredMixin,UpdateView):
     model = User
@@ -78,8 +56,7 @@ class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     def get_success_url(self):
         return reverse("profile",kwargs={'user_id':self.request.user.id})
 
-
-    
+ 
 class CustomPasswordChangeView(LoginRequiredMixin,PasswordChangeView):
     def get_success_url(self):
         return reverse("profile",kwargs={'user_id':self.request.user.id})
