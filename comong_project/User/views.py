@@ -27,10 +27,12 @@ class ProfileView(DetailView):
     pk_url_kwarg = "user_id"
     context_object_name = "profile_user"
 
+    '''
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         context["user_tier"] = self.get_object().tier  # 티어 정보를 컨텍스트에 추가
         return context
+    '''
 
 # 프로필 설정 -> UpdateView 상속
 class ProfileSetView(LoginRequiredMixin,UpdateView):
